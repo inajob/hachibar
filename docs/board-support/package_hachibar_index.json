@@ -1,0 +1,41 @@
+{
+  "packages": [
+    {
+      "name": "HACHIBAR",
+      "maintainer": "inajob",
+      "websiteURL": "https://github.com/inajob/hachibar",
+      "email": "",
+      "help": {
+        "online": ""
+      },
+      "platforms": [
+        {
+          "name": "HACHIBAR",
+          "architecture": "avr",
+          "version": "0.1.0",
+          "category": "Contributed",
+          "help": {
+            "online": "https://github.com/inajob/hachibar/wiki"
+          },
+          "url": "https://inajob.github.io/hachibar/board-support/hachibar-0.1.0.zip",
+          "archiveFileName": "hachibar-0.1.0.zip",
+          "checksum": "SHA-256:4cad3e08023d5fc1810dce703fb241540022d3f505b4a74d84e54d93a2d4edb2",
+          "size": "363",
+
+          "boards": [
+            {"name": "HACHIBAR"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "arduino",
+              "name": "avrdude",
+              "version": "6.0.1-arduino5"
+            }
+          ]
+        }
+      ],
+      "tools": []
+    }
+  ]
+}
+
