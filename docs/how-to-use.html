@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HACHIBAR(はちばー)での開発方法</title>
+<!-- ogp -->
+<meta name="description" content="HACHIBAR(はちばー)は手のひらサイズのゲーム機です">
+<meta property="og:title"       content="HACHIBAR(はちばー)での開発方法">
+<meta property="og:description" content="HACHIBAR(はちばー)は手のひらサイズのゲーム機です">
+<meta property="og:url"         content="https://inajob.github.io/hachibar/">
+<meta property="og:image"       content="https://inajob.github.io/hachibar/imgs/main.jpg">
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="twitter:site:id"    content="@ina_ani">
+<meta name="twitter:creator"    content="@ina_ani">
+<!-- /ogp -->
+<link rel="stylesheet" href="css/hachibar.css">
+<script src="js/markdown-it.min.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h1>HACHIBAR での開発方法</h1>
+<div class="right">
+<a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet">
+Tweet</a>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</div>
+<div id="contents">
+<!-- content here -->
+
+<a href="index.html">&lt;HACHIBARに戻る</a>
+
+
+このページではHACHIBARでの開発方法を紹介します。
+
+## ボードマネージャへの登録
+
+Arduino IDEでHACHIBARの開発を行うためにはボードマネージャに登録する必要があります。
+
+Arduino IDE を起動し、メニューの「ファイル」「環境設定」の「追加のボードマネージャのURL」に `https://inajob.github.io/hachibar/board-support/package_hachibar_index.json` を追加してください。
+
+<img src="imgs/add-board-manager.png">
+
+その後、メニューの「ツール」「ボード」「ボードマネージャ...」から「HACHIBAR」を「インストール」してください。
+
+<img src="imgs/install-board-manager.png">
+
+## ボードの選択
+
+上記が完了したら、「ツール」「ボード」から「HACHIBAR」が現れるので選択してください。
+HACHIBARをPCに接続し認識できると「ツール」「シリアルポート」に「COM6」（この6という数字は環境によって変わります）などのシリアルポートが現れるので、それを選択してください。
+
+## HACHIBAR SDK の登録
+
+HACHIBAR SDK( https://github.com/inajob/hachibar-lib/releases/download/v0.1.0/hachibar.zip ) をダウンロードします。
+
+Arduino IDE を起動し、メニューの「スケッチ」「ライブラリのインクルード」「.ZIP形式のライブラリをインストール...」を選択し、先ほどダウンロードした hachibar.zip を選択します。
+
+## サンプルプログラムの実行
+
+上記が完了したラ「ファイル」「スケッチ例」から「HACHIBAR」を選べるようになります。
+好きなサンプルプログラムを選んで、ツールバーの右矢印のボタン「マイコンボードに書き込む」をクリックすることでプログラムをビルド+書き込みできます。
+
+## (補足)HACHIBAR SDK のアップデート
+
+すでにHACHIBAR SDKをインストールしたことがある場合は、新しいバージョンのHACHIBAR SDKをインストールすることができません。
+再インストールのためには、一度HACHIBAR SDKを削除する必要があります。
+
+Arduino IDEを起動し「ファイル」「環境設定」を選択し、「スケッチブックの保存場所」をのパスを確認してください。
+その保存場所に存在する「hachibar」というディレクトリを削除してください。
+
+---
+
+<a href="index.html">&lt;HACHIBARに戻る</a>
+</div>
+<div id="render">
+</div>
+
+<script>
+  (function(){
+    var elm = document.getElementById("contents");
+    var renderElm = document.getElementById("render");
+    var md = markdownit({html: true, linkify: true, highlight:function(str,lang){
+      console.log(str);
+    }});
+    var htmlStr = md.render(elm.innerHTML);
+    renderElm.innerHTML = htmlStr;
+    elm.style.display = "none";
+  })();
+</script>
+</body>
+</html>

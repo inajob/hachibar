@@ -14,8 +14,10 @@
 <meta name="twitter:site:id"    content="@ina_ani">
 <meta name="twitter:creator"    content="@ina_ani">
 <!-- /ogp -->
-<link rel="stylesheet" href="hachibar.css">
+<link rel="stylesheet" href="css/hachibar.css">
+<link rel="stylesheet" href="css/prism.css">
 <script src="js/markdown-it.min.js"></script>
+<script src="js/prism.js"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </head>
@@ -31,9 +33,9 @@ Tweet</a>
 <!-- content here -->
 ## これはなに?
 
-<img src="imgs/main.jpg">
+<img class="left" src="imgs/main.jpg">
 
-HACHIBARは手のひらサイズのモバイルゲーム機です。
+HACHIBAR(はちばー)は手のひらサイズのモバイルゲーム機です。
 Arduinoを基にしているので、Arduinoを使ってオリジナルのゲームを作ることができます。
 
 現在絶賛開発中です。
@@ -46,6 +48,12 @@ Arduinoを基にしているので、Arduinoを使ってオリジナルのゲー
 - 小型スピーカー
 - 十字キー + A,Bボタン
 - 電源: CR2032
+- USB経由でのプログラム書き換え
+
+## 開発環境
+
+Arduino IDEで開発することができます。
+詳しい手順は<a href="how-to-use.html">HACHIBARでの開発方法</a>を参照してください。
 
 ## サンプルプログラム
 
@@ -54,37 +62,30 @@ HACHIBAR専用のSDKが提供するHachibarオブジェクトを通じてディ�
 
 
 <pre>
-#include "hachibar.h"
+<code class="language-c">
+#include "hachibar.h"      // include HACHIBAR SDK
+#include "hachibar_font.h" // include default font
 
-Hachibar h;
+Hachibar h;    // HACHIBAR SDK
+int count = 0; // scroll counter
 
 void setup(){
-  h.init();
+  h.init();    // initialize HACHIBAR SDK
+  h.setFont(&hachibar_font);  // set Default font
 }
-void loop(){
-  h.rect(false, 0, 0, 8, 16);
-  if(h.trigger[h.BTN_A] > 3){
-    h.drawChar('A', 2, 2);
-  }
-  if(h.trigger[h.BTN_B] > 3){
-    h.drawChar('B', 2, 2);
-  }
 
-  if(h.trigger[h.BTN_UP] > 3){
-    h.drawChar('^', 2, 2);
+void loop(){
+  if(h.nextFrame()){ // keep frame rete
+    h.rect(false, 0, 0, 8, 16);         // clear all
+    h.drawString("Hello  ", -count, 0); // draw Hello
+    h.drawString("  World", -count, 8); // draw World
+
+    h.updateKey();   // update Keyboard input
+    count ++;        // increment counter
   }
-  if(h.trigger[h.BTN_DOWN] > 3){
-    h.drawChar('V', 2, 2);
-  }
-  if(h.trigger[h.BTN_LEFT] > 3){
-    h.drawChar('<', 2, 2);
-  }
-  if(h.trigger[h.BTN_RIGHT] > 3){
-    h.drawChar('>', 2, 2);
-  }
-  h.updateKey();
-  h.updateDisplay();
+  h.updateDisplay(); // update Display
 }
+</code>
 </pre>
 
 ## ロードマップ
@@ -117,6 +118,7 @@ void loop(){
     var htmlStr = md.render(elm.innerHTML);
     renderElm.innerHTML = htmlStr;
     elm.style.display = "none";
+    Prism.highlightAll();
   })();
 </script>
 </body>
