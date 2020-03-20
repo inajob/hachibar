@@ -69,6 +69,16 @@ GPIOの設定をします。setup()内で必ず実行してください。
 ### nextFrame()
 次のフレームを描画すべきかを返します。
 loop内にはこの関数の呼び出しがtrueの時だけ処理することを推奨します。それにより30FPSでのゲーム進行となります。
+## フォント
+2種類のフォントを同梱しています。
+
+- 横幅5pxの通常フォント
+  - `#include "hachibar_font.h"` で読みこみます。
+  - `setFont(&hachibar_font)` でフォントを設定します。
+- 横幅3pxの小さめフォント
+  - `#include "hachibar_sfont.h"` で読みこみます。
+  - `setFont(&hachibar_sfont)` でフォントを設定します。
+
 ## ゲームひな形
 
 <pre>
