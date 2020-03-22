@@ -65,6 +65,12 @@ img.parts{
   width:100px;
   margin: 0em;
 }
+
+div.notice{
+  border: solid 1px red;
+  background-color: #fdd;
+}
+
 table{
   margin: 1em;
   border: solid 2px #333;
