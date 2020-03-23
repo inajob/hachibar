@@ -75,6 +75,13 @@ Arduino IDEを起動し「ファイル」「環境設定」を選択し、「ス
 
 [HACHIBAR SDKのリファレンス](reference.html)を参考にしてください。
 
+## (応用的な使い方) Arduinoとして利用する
+
+HACHIBARのブートローダーは[optiboot](https://github.com/Optiboot/optiboot)を用いています。
+普通のArduinoと違うところは書き込みのための速度が38400bpsとなっているところが異なっています。
+
+HACHIBARは誤差の大きい内部RC発振器を利用して動作しており、この誤差を修正するための特別なブートローダーを書き込んであります。
+
 ---
 
 <a href="index.html">&lt;HACHIBARに戻る</a>
